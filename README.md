@@ -1,6 +1,6 @@
 # 🚀 MERN Stack Application
 
-Una aplicación full-stack moderna construida con MongoDB, Express, React y Node.js, totalmente containerizada con Docker para un desarrollo y despldespliegue simplificado.
+Una aplicación full-stack moderna construida con MongoDB, Express, React y Node.js, totalmente containerizado con Docker para un desarrollo y despliegue simplificado.
 
 ## ✨ Características
 
