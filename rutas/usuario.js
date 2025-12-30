@@ -12,11 +12,8 @@ const esquemaUsuario = new schemaUser({
 
 const modeloUsuario = mongoose.model("usuarios", esquemaUsuario)
 
-/* Ruta de prueba
-router.get("/ejemplo", (req, res) => {
-    res.end("Carga desde ruta ejemplo")
-})
-*/
+
+// Agregar Usuario
 
 router.post("/registrarusuario", async (req, res) => {
     try {
@@ -41,6 +38,26 @@ router.post("/registrarusuario", async (req, res) => {
         res.status(500).json({
             success: false,
             message: "Error al registrar usuario",
+            error: err.message
+        })
+    }
+})
+
+// Obtener todos los Usuarios
+
+router.get("/obtenerusuarios", async (req, res) => {
+    try {
+        const docs = await modeloUsuario.find({})
+        res.status(200).json({
+            success: true,
+            message: "Usuarios encontrados exitosamente!!!",
+            data: docs
+        })
+    } catch (err) {
+        console.error("Erorr al listar usuarios")
+        res.status(500).json({
+            success: false,
+            message: "Error al listar usuario",
             error: err.message
         })
     }
