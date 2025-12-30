@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import ListaUsuaios from './ListaUsuarios';
+import ListaUsuarios from './ListaUsuarios';
 import RegistrarUsuario from './RegistrarUsuario';
 import EditarUsuario from './EditarUsuario';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -20,7 +20,7 @@ function App() {
                     <a className="nav-link" href="/">Listar Usuarios</a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="agregarusuario">Agregar Usuario</a>
+                    <a className="nav-link" href="registrarusuario">Registrar Usuario</a>
                   </li>
                   <li className="nav-item">
                     <a className="nav-link" href="editarusuario">Editar Usuario</a>
@@ -35,8 +35,8 @@ function App() {
                                       
             <BrowserRouter>
               <Routes>
-                <Route path='/' element={<ListaUsuaios></ListaUsuaios>}></Route>
-                <Route path='agregarusuario' element={<RegistrarUsuario></RegistrarUsuario>}></Route>
+                <Route path='/' element={<ListaUsuarios></ListaUsuarios>}></Route>
+                <Route path='registrarusuario' element={<RegistrarUsuario></RegistrarUsuario>}></Route>
                 <Route path='editarusuario' element={<EditarUsuario></EditarUsuario>}></Route>
                 <Route></Route>
               </Routes>
