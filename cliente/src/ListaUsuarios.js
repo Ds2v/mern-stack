@@ -1,29 +1,40 @@
 import React, { useState, useEffect } from "react";
 import UsuarioIndividual from "./UsuarioIndividual";
 import axios from "axios";
-function ListaUsuaios() {
+function ListaUsuarios() {
 
     // Hooks 
-    const[dataUsuario, setDataUsuario]=useState([])
+    const [dataUsuario, setDataUsuario] = useState([])
 
     useEffect(() => {
         axios.get("/api/usuario/obtenerusuarios")
-        .then(res => {
-            console.log(res);           
-        })
-        .catch(err => {
-            console.log(err);            
-        })
+            .then(res => {
+                console.log(res);
+                setDataUsuario(res.data)
+            })
+            .catch(err => {
+                console.log(err);
+            })
     }, [])
-    
-    
 
-    return(
-        <div>
-            <h3>Listado de Usuarios</h3>
-            <UsuarioIndividual></UsuarioIndividual>
+    // Mapeo lista de usuarios en objeto usuario
+    const listaUsuarios = dataUsuario.map(usuario => {
+        return (
+            <UsuarioIndividual key={usuario._id || usuario.idUsuario} usuario={usuario}></UsuarioIndividual>
+        )
+    })
+
+
+
+    return (
+        <div className="container">
+            <div className="row">
+                <h3 className="mt-4 mb-4">Listado de Usuarios</h3>
+                {listaUsuarios}
+            </div>
+
         </div>
-    )    
+    )
 }
 
-export default ListaUsuaios;
+export default ListaUsuarios;

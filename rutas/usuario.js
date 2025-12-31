@@ -48,6 +48,8 @@ router.post("/registrarusuario", async (req, res) => {
 router.get("/obtenerusuarios", async (req, res) => {
     try {
         const docs = await modeloUsuario.find({})
+        res.send(docs)
+        
         res.status(200).json({
             success: true,
             message: "Usuarios encontrados exitosamente!!!",
