@@ -14,7 +14,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:"true"}))
 
 app.get("/", (req, res) =>{
-    res.end("Welcome to the Server Node. JS - Ds2v")
+    res.end("Welcome to the Server Node.JS - Ds2v")
 })
 
 app.use("/api/usuario", rutaUsuario)

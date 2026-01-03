@@ -50,16 +50,54 @@ router.get("/obtenerusuarios", async (req, res) => {
         const docs = await modeloUsuario.find({})
         res.send(docs)
         
-        res.status(200).json({
-            success: true,
-            message: "Usuarios encontrados exitosamente!!!",
-            data: docs
-        })
     } catch (err) {
-        console.error("Erorr al listar usuarios")
+        console.error("Erorr al listar usuarios console")
         res.status(500).json({
             success: false,
             message: "Error al listar usuario",
+            error: err.message
+        })
+    }
+})
+
+// Obtener data de usuario
+
+router.post("/obtenerdatausuario", async (req, res) => {
+    try {
+        const user1 = await modeloUsuario.find({idUsuario:req.body.idUsuario})
+        res.send(user1)
+    
+    } catch (err) {
+        console.error("Error al buscar usuario:", err)
+        res.status(500).json({
+            success: false,
+            message: "Error al buscar usuario",
+            error: err.message
+        })
+    }
+})
+
+
+// Editar Usuario
+
+router.post("/editarusuario", async (req, res) => {
+    try {
+        await modeloUsuario.findOneAndUpdate({idUsuario:req.body.idUsuario}, {
+            nombre: req.body.nombre,
+            email: req.body.email,
+            telefono: req.body.telefono  
+        });
+
+        res.status(201).json({
+            success: true,
+            message: "Usuario editado exitosamente!!!"
+        })
+
+    } catch (err) {
+        console.error("Error al editar usuario:", err)
+        res.status(500).json({
+            success: false,
+            message: "Error al editar usuario",
             error: err.message
         })
     }
