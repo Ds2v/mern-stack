@@ -103,4 +103,24 @@ router.post("/editarusuario", async (req, res) => {
     }
 })
 
+// Eliminar Usuario
+
+router.post("/eliminarusuario", async(req, res) => {
+    try {
+        await modeloUsuario.findOneAndDelete({idUsuario:req.body.idUsuario})
+        
+        res.status(201).json({
+            success: true,
+            message: "Usuario eliminado exitosamente!!!"
+        })
+    } catch (err) {
+        console.error("Error al eliminar usuario:", err)
+        res.status(500).json({
+            success: false,
+            message: "Error al eliminar usuario",
+            error: err.message
+        })
+    }
+})
+
 module.exports = router

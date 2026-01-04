@@ -1,7 +1,23 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function UsuarioIndividual({usuario}) {
+
+    const navegar = useNavigate()
+
+    function eliminarUsuario(idUsuario) {
+        axios.post("/api/usuario/eliminarusuario", {idUsuario: idUsuario})    
+        .then(res => {
+            console.log(res.data)            
+            alert(res.data.message)
+            navegar(0)
+        }) 
+        .catch(err => {
+            console.log(err)}
+        )
+    }
+
     return (
         <div className="container">
             <div className="row">
@@ -14,8 +30,8 @@ function UsuarioIndividual({usuario}) {
                     </ul>
                     
                     <Link to={`/editarusuario/${usuario.idUsuario}`}><li className="btn btn-success">Editar</li></Link>
-                    &nbsp;
-                    <button className="btn btn-danger">Borrar</button>
+                    &nbsp;                                        
+                    <button className="btn btn-danger" onClick={()=>{eliminarUsuario(usuario.idUsuario)}}>Borrar</button>                    
                     <hr className="mt-4"></hr>
                 </div>
             </div>
