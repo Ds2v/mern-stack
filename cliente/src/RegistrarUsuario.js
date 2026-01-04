@@ -1,6 +1,8 @@
-import React, { useState } from "react";
-import uniqid from "uniqid";
-import axios from "axios";
+import React, { useState} from "react"
+import uniqid from "uniqid"
+import axios from "axios"
+import Swal from 'sweetalert2'
+import { useNavigate } from 'react-router-dom'
 
 function RegistrarUsuario() {
 
@@ -8,6 +10,8 @@ function RegistrarUsuario() {
     const[nombre, setNombre]=useState("")
     const[email, setEmail]=useState("")
     const[telefono, setTelefono]=useState("")
+
+    const navegar = useNavigate()
 
     function registrarUsuario() {
         var usuario = {
@@ -21,9 +25,11 @@ function RegistrarUsuario() {
 
         axios.post("/api/usuario/registrarusuario", usuario)    
         .then(res => {
-            alert(res.data.message)
-        }) 
-        .catch(err => {console.log(err)})
+            //alert(res.data.message)
+            Swal.fire("Felicidades!", "Usuario registrado Exitosamente")
+            navegar("/")
+        })         
+        .catch(err => {console.log(err)})        
     }
 
     return(
